@@ -14,7 +14,7 @@ body {
 }
 
 .corner-image {
-    background-image: url("images/Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
+    background-image: url("Gemini_Generated_Image_ghbxh3ghbxh3ghbx.png");
     position:absolute;
     top: 10px;      /* distance from top */
     left: 10px;    /* distance from left */
