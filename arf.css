@@ -88,6 +88,11 @@ path.link {
     text-align: center;
 }
 
+h2 {
+    font-size: 20px;
+    text-align: center;
+   }
+
 h3 {
     text-decoration: underline;
     margin-bottom: auto;
