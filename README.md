@@ -1,5 +1,7 @@
 # Chip ID Framework
 
+Page URL: https://proudyoungone.github.io/Chip-ID-Framework/
+
 ## Notes
 Chip ID Framework was built to assist anyone that is faces with the difficult task of identifying a flash memory chip that does not have much to go on. No make or model identifiers anywhere to be found? This is the place for you. Filter down to find possible matches to what you are looking for.
 
