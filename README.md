@@ -2,7 +2,7 @@
 
 **IMPORTANT NEWS**
 A new repository has been built that contains the same Chip-ID Framework and other new feautures. it can be visited at the following link:
-Page URL: https://proudyoungone.github.io/THE-FORENSIC-ZONE-PROJECT/
+https://proudyoungone.github.io/THE-FORENSIC-ZONE-PROJECT/
 
 ## Notes
 Chip ID Framework was built to assist anyone that is faces with the difficult task of identifying a flash memory chip that does not have much to go on. No make or model identifiers anywhere to be found? This is the place for you. Filter down to find possible matches to what you are looking for.
