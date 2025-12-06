@@ -1,9 +1,7 @@
 # Chip ID Framework
 
 **IMPORTANT NEWS**
-THIS REPOSITORY IS NO LONGER ACTIVE.
-THE CHIP ID FRAMEWORK PAGE HOW NOW BEEN MERGED INTO A WEBSITE TITLE " THE 4NSIC ZONE PROJECT".
-
+A new repository has been built that contains the same Chip-ID Framework and other new feautures. it can be visited at the following link:
 Page URL: https://proudyoungone.github.io/THE-FORENSIC-ZONE-PROJECT/
 
 ## Notes
