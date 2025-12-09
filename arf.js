@@ -1,6 +1,6 @@
 /* Created by Justin Nordine, edited by Katelyn Rogers with the assistance of Chat GPT*/
 
-var margin = [20, 120, 20, 140],
+var margin = [0, 20, 0, 20],   // ✅ NO TOP PUSH
     width = 1280 - margin[1] - margin[3],
     height = 800 - margin[0] - margin[2],
     i = 0,
@@ -19,7 +19,6 @@ var vis = d3.select("#body").append("svg:svg")
   .append("svg:g")
     .attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
 
-d3.json("arf.json", function(json) {
   root = json;
   root.x0 = height / 2;
   root.y0 = 0;
@@ -151,3 +150,4 @@ function toggle(d) {
     d._children = null;
   }
 }
+
