@@ -1,4 +1,4 @@
-/* Created by Justin Nordine, edited by Katelyn Rogers with the assistance of Chat GPT*/
+/* Created by Justin Nordine, edited by Katelyn Rogers with the assistance of Chat GPT */
 
 var margin = [0, 20, 0, 20],   // ✅ NO TOP PUSH
     width = 1280 - margin[1] - margin[3],
@@ -19,6 +19,13 @@ var vis = d3.select("#body").append("svg:svg")
   .append("svg:g")
     .attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
 
+// ✅ FIX: actually load the JSON
+d3.json("arf2.json", function(error, json) {
+  if (error) {
+    console.error("❌ Could not load arf2.json:", error);
+    return;
+  }
+
   root = json;
   root.x0 = height / 2;
   root.y0 = 0;
@@ -31,56 +38,45 @@ var vis = d3.select("#body").append("svg:svg")
     }
   }
 
-/*  function toggleAll(d) {
-    if (d.children) {
-      d.children.forEach(toggleAll);
-      toggle(d);
-    }
-  } */
-  root.children.forEach(collapse);
+  if (root.children) root.children.forEach(collapse);
   update(root);
 });
 
 function update(source) {
-  // var duration = d3.event && d3.event.altKey ? 5000 : 500;
-
-  // Compute the new tree layout.
   var nodes = tree.nodes(root).reverse();
 
   // Normalize for fixed-depth.
   nodes.forEach(function(d) { d.y = d.depth * 180; });
 
-  // Update the nodes…
   var node = vis.selectAll("g.node")
       .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-  // Enter any new nodes at the parent's previous position.
   var nodeEnter = node.enter().append("svg:g")
       .attr("class", "node")
-      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+      .attr("transform", function(d) {
+        return "translate(" + source.y0 + "," + source.x0 + ")";
+      })
       .on("click", function(d) { toggle(d); update(d); });
 
   nodeEnter.append("svg:circle")
       .attr("r", 1e-6)
       .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
-  nodeEnter.append('a')
+  nodeEnter.append("a")
       .attr("target", "_blank")
-      .attr('xlink:href', function(d) { return d.url; })
-      .append("svg:text")
-      .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+      .attr("xlink:href", function(d) { return d.url; })
+    .append("svg:text")
+      .attr("x", function(d) { return (d.children || d._children) ? -10 : 10; })
       .attr("dy", ".35em")
-      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+      .attr("text-anchor", function(d) { return (d.children || d._children) ? "end" : "start"; })
       .text(function(d) { return d.name; })
-      .style("fill: rgb(0, 0, 0)", function(d) { return d.free ? 'black' : '#999'; })
+      // ✅ FIX: correct fill style call
+      .style("fill", function(d) { return d.free ? "black" : "black"; })
       .style("fill-opacity", 1e-6);
 
   nodeEnter.append("svg:title")
-    .text(function(d) {
-      return d.description;
-    });
+      .text(function(d) { return d.description; });
 
-  // Transition nodes to their new position.
   var nodeUpdate = node.transition()
       .duration(duration)
       .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
@@ -92,23 +88,17 @@ function update(source) {
   nodeUpdate.select("text")
       .style("fill-opacity", 1);
 
-  // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
       .duration(duration)
       .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
       .remove();
 
-  nodeExit.select("circle")
-      .attr("r", 1e-6);
+  nodeExit.select("circle").attr("r", 1e-6);
+  nodeExit.select("text").style("fill-opacity", 1e-6);
 
-  nodeExit.select("text")
-      .style("fill-opacity", 1e-6);
-
-  // Update the links…
   var link = vis.selectAll("path.link")
       .data(tree.links(nodes), function(d) { return d.target.id; });
 
-  // Enter any new links at the parent's previous position.
   link.enter().insert("svg:path", "g")
       .attr("class", "link")
       .attr("d", function(d) {
@@ -119,12 +109,10 @@ function update(source) {
       .duration(duration)
       .attr("d", diagonal);
 
-  // Transition links to their new position.
   link.transition()
       .duration(duration)
       .attr("d", diagonal);
 
-  // Transition exiting nodes to the parent's new position.
   link.exit().transition()
       .duration(duration)
       .attr("d", function(d) {
@@ -133,14 +121,12 @@ function update(source) {
       })
       .remove();
 
-  // Stash the old positions for transition.
   nodes.forEach(function(d) {
     d.x0 = d.x;
     d.y0 = d.y;
   });
 }
 
-// Toggle children.
 function toggle(d) {
   if (d.children) {
     d._children = d.children;
@@ -150,4 +136,3 @@ function toggle(d) {
     d._children = null;
   }
 }
-
