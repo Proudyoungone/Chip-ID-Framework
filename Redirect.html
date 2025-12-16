@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chip ID Framework Has Moved</title>
+
+  <style>
+    body {
+      background: #0b0f14;
+      color: #e8f9ff;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .box {
+      max-width: 520px;
+      padding: 32px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.7);
+      box-shadow:
+        0 0 15px rgba(0,229,255,0.6),
+        0 0 30px rgba(0,229,255,0.4);
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px #00e5ff;
+    }
+
+    .countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 16px 0;
+      color: #00e5ff;
+      text-shadow: 0 0 10px #00e5ff;
+    }
+
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>Chip ID Framework</h1>
+    <p>This project has moved to:</p>
+    <p><a href="https://proudyoungone.github.io/THE-4NSIC-ZONE-PROJECT/">THE-4NSIC-ZONE-PROJECT</a></p>
+
+    <p>You will be redirected in</p>
+    <div class="countdown">
+      <span id="timer">5</span> seconds
+    </div>
+
+    <p>If the redirect does not occur, click the link above.</p>
+  </div>
+
+  <script>
+    let seconds = 5;
+    const timerEl = document.getElementById("timer");
+
+    const countdown = setInterval(() => {
+      seconds--;
+      timerEl.textContent = seconds;
+
+      if (seconds <= 0) {
+        clearInterval(countdown);
+        window.location.href = "https://proudyoungone.github.io/THE-4NSIC-ZONE-PROJECT/";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
