@@ -1,5 +1,11 @@
 # Chip ID Framework
 
+## 📖 See Article
+
+Read the Forensic Focus that mentions Chip ID Framework:
+
+➡️ [Chip ID Framework – Forensic Focus Article](https://www.forensicfocus.com/news/digital-forensics-round-up-november-26-2025/)
+
 **IMPORTANT NEWS**
 A new repository has been built that contains the same Chip-ID Framework and other new features. It can be visited at the following link:
 [https://proudyoungone.github.io/THE-FORENSIC-ZONE-PROJECT/](https://proudyoungone.github.io/THE-4NSIC-ZONE-PROJECT/)
